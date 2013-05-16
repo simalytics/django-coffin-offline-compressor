@@ -6,3 +6,5 @@ example/static/
 README*
 LICENSE*
 MANIFEST*
+.project
+.pydevproject
