@@ -109,7 +109,7 @@ def find_package_data(where='.', package='',
 setup(
     name="django-coffin-offline-compressor",
     version=find_version("coffin_offline_compressor", "__init__.py"),
-    url='https//github.com/simalytics/django-coffin-offline-compressor'
+    url='https//github.com/simalytics/django-coffin-offline-compressor',
     license='MIT',
     description="Using coffin and django_compressor but miss offline compression?",
     long_description=read('README.md'),
