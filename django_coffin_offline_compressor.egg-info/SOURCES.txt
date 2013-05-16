@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+coffin_offline_compressor/__init__.py
+coffin_offline_compressor/jinja2ext.py
+coffin_offline_compressor/models.py
+coffin_offline_compressor/test_settings.py
+coffin_offline_compressor/management/__init__.py
+coffin_offline_compressor/management/commands/__init__.py
+coffin_offline_compressor/management/commands/compress_coffin.py
+coffin_offline_compressor/tests/__init__.py
+django_coffin_offline_compressor.egg-info/PKG-INFO
+django_coffin_offline_compressor.egg-info/SOURCES.txt
+django_coffin_offline_compressor.egg-info/dependency_links.txt
+django_coffin_offline_compressor.egg-info/not-zip-safe
+django_coffin_offline_compressor.egg-info/top_level.txt

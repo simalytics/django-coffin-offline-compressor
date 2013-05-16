@@ -30,6 +30,9 @@ from django.utils.datastructures import SortedDict
 from django.template.loader_tags import (ExtendsNode,
                                          BLOCK_CONTEXT_KEY)
 
+from askbot.conf import settings as askbot_settings
+from askbot.utils import url_utils
+
 try:
     from django.template.loaders.cached import Loader as CachedLoader
 except ImportError:
@@ -298,6 +301,12 @@ class Command(NoArgsCommand):
                 context.update(jinja2.defaults.DEFAULT_NAMESPACE)
                 #context.update(jingo.register.env.filters)
                 context.update(jinja2.defaults.DEFAULT_FILTERS)
+                
+                my_settings = askbot_settings.as_dict()
+                my_settings['LOGIN_URL'] = url_utils.get_login_url()
+                my_settings['LOGOUT_URL'] = url_utils.get_logout_url()
+                context.update({'settings':my_settings})
+                Template.from_code(env, compiled_node,{}).render(context)
 
                 key = get_offline_hexdigest(
                     Template.from_code(
@@ -306,9 +315,11 @@ class Command(NoArgsCommand):
                         compiled_node,
                         {}
                     ).render(context))
+
                 try:
                     context['compress_forced'] = True
                     compiled_node = env.compile(jinja2.nodes.Template([node]))
+
                     result = Template.from_code(
                         env,
                         compiled_node,
