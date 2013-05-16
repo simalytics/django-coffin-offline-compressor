@@ -107,14 +107,14 @@ def find_package_data(where='.', package='',
     return out
 
 setup(
-    name="django-jingo-offline-compressor",
-    version=find_version("jingo_offline_compressor", "__init__.py"),
-    url='http://github.com/peterbe/django-jingo-offline-compressor/',
+    name="django-coffin-offline-compressor",
+    version=find_version("coffin_offline_compressor", "__init__.py"),
+    url='http://github.com/TODO',
     license='MIT',
-    description="Using jingo and django_compressor but miss offline compression?",
+    description="Using coffin and django_compressor but miss offline compression?",
     long_description=read('README.md'),
-    author='Peter Bengtsson',
-    author_email='mail@peterbe.com',
+    author='Michael Chan',
+    author_email='michael@mchan.org',
     packages=find_packages(),
     package_data=find_package_data(),
     classifiers=[
