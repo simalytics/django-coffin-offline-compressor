@@ -1,9 +1,9 @@
 /build/
 /dist/
 /django_jingo_offline_compressor.egg-info/
+/django_coffin_offline_compressor.egg-info/
 
 example/static/
-README*
 LICENSE*
 MANIFEST*
 .project

@@ -309,7 +309,6 @@ class Command(NoArgsCommand):
                 my_settings['LOGOUT_URL'] = url_utils.get_logout_url()
                 context.update({'settings' : my_settings,
                                 'skin' : get_skin()})
-                Template.from_code(env, compiled_node,{}).render(context)
 
                 key = get_offline_hexdigest(
                     Template.from_code(
