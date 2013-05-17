@@ -290,6 +290,8 @@ class Command(NoArgsCommand):
         count = 0
         results = []
         offline_manifest = SortedDict()
+        
+        from askbot.skins.loaders import get_skin
         for template, nodes in compressor_nodes.iteritems():
             context = Context(settings.COMPRESS_OFFLINE_CONTEXT)
             template._log = log
@@ -305,7 +307,8 @@ class Command(NoArgsCommand):
                 my_settings = askbot_settings.as_dict()
                 my_settings['LOGIN_URL'] = url_utils.get_login_url()
                 my_settings['LOGOUT_URL'] = url_utils.get_logout_url()
-                context.update({'settings':my_settings})
+                context.update({'settings' : my_settings,
+                                'skin' : get_skin()})
                 Template.from_code(env, compiled_node,{}).render(context)
 
                 key = get_offline_hexdigest(
