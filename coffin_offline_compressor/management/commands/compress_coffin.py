@@ -6,7 +6,6 @@ from fnmatch import fnmatch
 import jinja2
 from jinja2.ext import Extension
 from jinja2.nodes import CallBlock, Call, ExtensionAttribute
-from types import MethodType
 from optparse import make_option
 
 try:
@@ -22,13 +21,11 @@ from coffin.template import Template
 from coffin.common import env
 from django.template.context import Context
 
-from compressor.utils import walk, any
+#from compressor.utils import walk, any
 from jinja2.exceptions import TemplateSyntaxError
 from django.utils.importlib import import_module
 from django.template import (TemplateDoesNotExist)
 from django.utils.datastructures import SortedDict
-from django.template.loader_tags import (ExtendsNode,
-                                         BLOCK_CONTEXT_KEY)
 
 from askbot.conf import settings as askbot_settings
 from askbot.utils import url_utils
@@ -163,7 +160,7 @@ class Command(NoArgsCommand):
             except TemplateDoesNotExist:
                 pass
             # Reload template_source_loaders now that it has been calculated ;
-            # it should contain the list of valid, instanciated template loaders
+            # it should contain the list of valid, instantiated template loaders
             # to use.
             from django.template.loader import template_source_loaders
         loaders = []
@@ -226,7 +223,7 @@ class Command(NoArgsCommand):
             log.write("Considering paths:\n\t" + "\n\t".join(paths) + "\n")
         templates = set()
         for path in paths:
-            for root, dirs, files in walk(path,
+            for root, dirs, files in os.walk(path,
                     followlinks=options.get('followlinks', False)):
                 templates.update(os.path.join(root, name)
                     for name in files if not name.startswith('.') and
@@ -240,7 +237,7 @@ class Command(NoArgsCommand):
             log.write("Found templates:\n\t" + "\n\t".join(templates) + "\n")
 
         #from compressor.contrib.jinja2ext import CompressorExtension
-        from jingo_offline_compressor.jinja2ext import CompressorExtension
+        from coffin_offline_compressor.jinja2ext import CompressorExtension
         env.add_extension(CompressorExtension)
         env.add_extension(AdminSiteViewsExtension)
         del env.extensions['compressor.contrib.jinja2ext.CompressorExtension']
@@ -359,7 +356,7 @@ class Command(NoArgsCommand):
             if (isinstance(node, CallBlock) and
                 isinstance(node.call, Call) and
                 isinstance(node.call.node, ExtensionAttribute) and
-                node.call.node.identifier == 'jingo_offline_compressor.jinja2ext.CompressorExtension'):
+                node.call.node.identifier == 'coffin_offline_compressor.jinja2ext.CompressorExtension'):
                 #node.call.node.identifier == 'compressor.contrib.jinja2ext.CompressorExtension'):
                 yield node
             else:

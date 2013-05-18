@@ -14,7 +14,7 @@ First install it by:
 pip install django-coffin-offline-compressor
 ```
 
-To start with, this assumes that you have `django_compressor` *1.2* and
+To start with, this assumes that you have `django_compressor` and
 `coffin` set up and working. 
 
 Add `coffin_offline_compressor` to your `INSTALLED_APPS`.
